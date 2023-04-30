@@ -219,36 +219,63 @@ document.addEventListener('DOMContentLoaded', () => {
 // ! sweet alert for download button in hero section
 
 document.getElementById('downloadApplication').addEventListener('click', function () {
-  Swal.fire('سيتم تنزيل التطبيق قريبًا')
+  Swal.fire({
+    title: 'سيتم تنزيل التطبيق قريبًا',
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown'
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp'
+    }
+  })
 })
 
 
-document.getElementById('bansharButton').addEventListener('click', function () {
+document.getElementById('appointmentButton').addEventListener('click', function () {
   Swal.fire({
-    title: 'خدمات البنشر',
-    html: `
-      <form class="form">
-        <label for="1">تغيير إطار احتياطي بالموقع / 10 دينار </label>
-        <input id="1" type="radio" name="r" value="1" checked="">
-        <label for="2">رقعة إطار خارجية بالموقع / 10 دينار </label>
-        <input id="2" type="radio" name="r" value="2">
-      </form>
-    `,
-    showCancelButton: true,
-    confirmButtonText: 'تأكيد',
-    cancelButtonText: 'إلغاء'
-  }).then((result) => {
-    if (result.value) {
-      const selectedOption = result.value;
-      // Determine which option was selected
-      if (selectedOption === true) {
-        // Redirect to the "change frame" page
-        window.location.replace = 'new.html';
+    title: 'يجب تسجيل الدخول اولًا',
+    confirmButtonText: 'تسجيل الدخول',
+  })
+    .then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = '#login';
+        document.getElementById("login").scrollIntoView();
 
-      } else if (selectedOption === true) {
-        // Redirect to the "external patch" page
-        window.location.replace = 'new.html';
       }
-    }
-  });
+    });
 });
+
+
+
+
+// document.getElementById('bansharButton').addEventListener('click', function () {
+//   Swal.fire({
+//     title: 'خدمات البنشر',
+//     html: `
+//       <form class="form">
+//         <label for="1">تغيير إطار احتياطي بالموقع / 10 دينار </label>
+//         <input id="1" type="radio" name="r" value="1" checked="">
+//         <label for="2">رقعة إطار خارجية بالموقع / 10 دينار </label>
+//         <input id="2" type="radio" name="r" value="2">
+//       </form>
+//     `,
+//     showCancelButton: true,
+//     confirmButtonText: 'تأكيد',
+//     cancelButtonText: 'إلغاء'
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       const selectedOption = result.value;
+//       // Determine which option was selected
+//       if (selectedOption === '1') {
+//         this.addEventListener('click', function () {
+//           window.location.replace('sweet.html')
+//         })
+//         // Redirect to the "change frame" page
+//         window.location.replace('license/license.html');
+//       } else if (selectedOption === '2') {
+//         // Redirect to the "external patch" page
+//         window.location.replace('sweet.html');
+//       }
+//     }
+//   });
+// });
